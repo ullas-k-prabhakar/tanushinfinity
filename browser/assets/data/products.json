@@ -1,8 +1,0 @@
-[
-  {"id":1,"name":"Solace Sofa","category":"Sofa","image":"assets/images/sofa.svg","price":25000,"size":"7 x 3 ft","count":10,"description":"A deep, welcoming sofa in soft natural linen.","featured":true},
-  {"id":2,"name":"Arco Lounge Chair","category":"Chair","image":"assets/images/chair.svg","price":6500,"size":"3 x 2 ft","count":18,"description":"A sculptural chair designed for unhurried reading.","featured":true},
-  {"id":3,"name":"Moss Wall Shelf","category":"Shelf","image":"assets/images/shelf.svg","price":4500,"size":"5 x 2 ft","count":6,"description":"An airy oak shelf for the objects you love.","featured":false},
-  {"id":4,"name":"Cove Table Lamp","category":"Lighting","image":"assets/images/lamp.svg","price":2500,"size":"18 x 10 in","count":12,"description":"A warm pool of light for late evenings.","featured":false},
-  {"id":5,"name":"Tera Side Table","category":"Table","image":"assets/images/table.svg","price":8200,"size":"2 x 2 ft","count":8,"description":"Solid timber and softened edges in perfect balance.","featured":true},
-  {"id":6,"name":"Haven Weave Rug","category":"Textiles","image":"assets/images/rug.svg","price":9900,"size":"6 x 4 ft","count":4,"description":"Handwoven texture to ground your living space.","featured":false}
-]
