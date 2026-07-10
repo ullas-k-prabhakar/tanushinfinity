@@ -1,59 +1,49 @@
-# MyApp
+# Tanush Infinity Hardware
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.6.
+A static Angular website for a local house construction hardware and building materials shop. The site showcases construction material categories and gives customers simple phone, WhatsApp and enquiry-form contact options.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- Static Angular application suitable for Cloudflare Pages
+- Routes for Home, Products, Product Details, Services, About and Contact
+- Editable TypeScript product category data in `src/app/data/product-categories.ts`
+- Responsive, mobile-friendly construction hardware theme
+- Static enquiry form with client-side success message only
+- No backend, database, login, cart, checkout, secrets or server-side functionality
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Local development
 
 ```bash
-ng generate component component-name
+npm install
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Open `http://localhost:4200/` in your browser.
+
+## Production build
 
 ```bash
-ng generate --help
+npm install
+npm run build
 ```
 
-## Building
+The production build is generated in:
 
-To build the project run:
-
-```bash
-ng build
+```text
+dist/cloudflare/browser
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Cloudflare Pages settings
 
-## Running unit tests
+Use these Cloudflare Pages build settings:
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+- Framework preset: Angular or None
+- Build command: `npm run build`
+- Output directory: `dist/cloudflare/browser`
+- Environment variables/secrets: none required
 
-```bash
-ng test
-```
+Because this is a static Angular site, Cloudflare Pages can host the generated browser files directly.
 
-## Running end-to-end tests
+## Cloudflare configuration file
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+This repository also includes `wrangler.toml` with `pages_build_output_dir = "dist/cloudflare/browser"` so Cloudflare Pages can validate the same static output directory used by the dashboard settings.
