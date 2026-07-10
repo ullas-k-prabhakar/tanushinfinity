@@ -1,0 +1,4 @@
+import { Component } from '@angular/core';
+import { EnquiryFormComponent } from '../enquiry-form/enquiry-form.component';
+@Component({ selector:'app-contact', imports:[EnquiryFormComponent], template:`<section class="page-hero"><p class="eyebrow">Contact</p><h1>Send your material requirement.</h1><p>Call, WhatsApp or submit the static enquiry form below. No login or checkout required.</p></section><section class="section contact-grid"><article class="contact-card"><h2>Shop details</h2><p><strong>Address:</strong> Shop address placeholder</p><p><strong>Phone:</strong> +91 00000 00000</p><p><strong>WhatsApp:</strong> +91 00000 00000</p><p><strong>Email:</strong> info@example.com</p><a class="button" href="https://wa.me/910000000000">Open WhatsApp</a><div class="map-placeholder" role="img" aria-label="Google Maps embed placeholder">Google Maps embed placeholder</div></article><app-enquiry-form></app-enquiry-form></section>` })
+export class ContactComponent {}
