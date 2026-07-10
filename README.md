@@ -30,7 +30,7 @@ npm run build
 The production build is generated in:
 
 ```text
-dist/tanush-infinity-hardware/browser
+dist/cloudflare/browser
 ```
 
 ## Cloudflare Pages settings
@@ -39,7 +39,11 @@ Use these Cloudflare Pages build settings:
 
 - Framework preset: Angular or None
 - Build command: `npm run build`
-- Output directory: `dist/tanush-infinity-hardware/browser`
+- Output directory: `dist/cloudflare/browser`
 - Environment variables/secrets: none required
 
 Because this is a static Angular site, Cloudflare Pages can host the generated browser files directly.
+
+## Cloudflare configuration file
+
+This repository also includes `wrangler.toml` with `pages_build_output_dir = "dist/cloudflare/browser"` so Cloudflare Pages can validate the same static output directory used by the dashboard settings.
