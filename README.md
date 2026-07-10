@@ -46,4 +46,4 @@ Because this is a static Angular site, Cloudflare Pages can host the generated b
 
 ## Cloudflare configuration file
 
-This repository also includes `wrangler.toml` with `pages_build_output_dir = "dist/cloudflare/browser"` so Cloudflare Pages can validate the same static output directory used by the dashboard settings.
+This repository also includes `wrangler.toml` with the Pages project `name` and `pages_build_output_dir = "dist/cloudflare/browser"` so Cloudflare Pages can validate the same static output directory used by the dashboard settings.
