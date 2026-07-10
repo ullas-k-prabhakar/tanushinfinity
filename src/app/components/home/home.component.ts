@@ -1,28 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
-import { Observable } from 'rxjs';
-import { Product } from '../../models/product';
-import { ProductService } from '../../services/product.service';
-import { SlideshowComponent } from '../slideshow/slideshow.component';
-import { ProductTileComponent } from '../product-tile/product-tile.component';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { PRODUCT_CATEGORIES } from '../../data/product-categories';
+import { ProductCardComponent } from '../product-card/product-card.component';
 
-@Component({
-  selector: 'app-home',
-  imports: [AsyncPipe, NgFor, NgIf, SlideshowComponent, ProductTileComponent],
-  template: `
-    <section class="hero-intro"><p class="eyebrow">Curated interiors · 2026</p><h1>Objects that make<br><i>home</i> feel like yours.</h1><p class="intro-copy">A considered collection of furniture made for slow mornings, warm gatherings and every ordinary moment in between.</p><a class="text-link" href="#products">Explore the collection <span>→</span></a></section>
-    <ng-container *ngIf="products$ | async as products; else loading">
-      <app-slideshow [products]="products"></app-slideshow>
-      <section class="product-section" id="products">
-        <div class="section-heading"><div><p class="eyebrow">The collection</p><h2>Latest arrivals</h2></div><p>{{ products.length }} pieces selected with intention</p></div>
-        <div class="product-grid"><app-product-tile *ngFor="let product of products" [product]="product"></app-product-tile></div>
-      </section>
-    </ng-container>
-    <ng-template #loading><p class="loading">Gathering the collection…</p></ng-template>
-  `
-})
-export class HomeComponent implements OnInit {
-  products$!: Observable<Product[]>;
-  constructor(private readonly productService: ProductService) {}
-  ngOnInit(): void { this.products$ = this.productService.getProducts(); }
-}
+@Component({ selector:'app-home', imports:[RouterLink, ProductCardComponent], template:`
+  <section class="hero section"><div class="hero-copy"><p class="eyebrow">Local construction supply partner</p><h1>Tanush Infinity Hardware</h1><p class="tagline">Quality Construction Materials for Every Stage of Your Building Project</p><div class="hero-actions"><a routerLink="/products" class="button">View Products</a><a routerLink="/contact" class="button button-light">Contact Us</a></div></div><div class="hero-panel" aria-label="Construction materials illustration"><span>🏗️</span><strong>Cement • Steel • Tiles • Plumbing • Electrical</strong><p>Trusted material support for homeowners, builders, contractors and site teams.</p></div></section>
+  <section class="section"><div class="section-heading"><p class="eyebrow">Major categories</p><h2>Everything your site needs, in one local shop.</h2></div><div class="category-grid compact">@for (category of featuredCategories; track category.id) {<app-product-card [category]="category"></app-product-card>}</div></section>
+  <section class="trust-band section" aria-labelledby="trust-title"><div><p class="eyebrow">Why customers choose us</p><h2 id="trust-title">Reliable supply with practical guidance.</h2></div><div class="trust-grid">@for (item of trustItems; track item.title) {<article><span>{{ item.icon }}</span><h3>{{ item.title }}</h3><p>{{ item.text }}</p></article>}</div></section>
+  <section class="whatsapp-cta"><h2>Need current price or availability?</h2><p>Send your requirement list on WhatsApp and our team will respond with details.</p><a class="button" href="https://wa.me/910000000000?text=Hello%20Tanush%20Infinity%20Hardware,%20I%20need%20construction%20materials">WhatsApp Enquiry</a></section>` })
+export class HomeComponent { featuredCategories = PRODUCT_CATEGORIES.slice(0, 8); trustItems=[{icon:'✅',title:'Quality materials',text:'Sourced from dependable suppliers with suitable options for every budget.'},{icon:'🚚',title:'Local delivery support',text:'Delivery coordination for nearby construction sites and homes.'},{icon:'📦',title:'Bulk order support',text:'Assistance for contractor, builder and full-house material requirements.'},{icon:'👷',title:'Construction guidance',text:'Practical help choosing cement, steel, plumbing, electrical and finish materials.'}]; }

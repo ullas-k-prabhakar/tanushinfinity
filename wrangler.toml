@@ -1,0 +1,4 @@
+# Cloudflare Pages configuration for this static Angular site.
+# The Angular application build writes browser assets here.
+name = "tanush-infinity-hardware"
+pages_build_output_dir = "dist/cloudflare/browser"

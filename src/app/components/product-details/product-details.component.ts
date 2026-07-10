@@ -1,19 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { CurrencyPipe, NgIf } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Product } from '../../models/product';
-import { ProductService } from '../../services/product.service';
+import { PRODUCT_CATEGORIES } from '../../data/product-categories';
 
-@Component({
-  selector: 'app-product-details',
-  imports: [NgIf, RouterLink, CurrencyPipe],
-  template: `
-    <section class="detail" *ngIf="product; else unavailable"><a routerLink="/" class="back-link">← Back to collection</a><div class="detail-layout"><div class="detail-image"><img [src]="product.image" [alt]="product.name"></div><article class="detail-copy"><p class="eyebrow">{{ product.category }}</p><h1>{{ product.name }}</h1><p class="detail-description">{{ product.description }}</p><p class="detail-price">{{ product.price | currency:'INR':'symbol':'1.0-0' }}</p><dl><div><dt>Size</dt><dd>{{ product.size }}</dd></div><div><dt>Availability</dt><dd>{{ product.count }} pieces in stock</dd></div><div><dt>Material</dt><dd>Hand-selected natural materials</dd></div></dl><button class="buy-button">Enquire about this piece <span>→</span></button></article></div></section>
-    <ng-template #unavailable><section class="not-found"><p class="eyebrow">Not found</p><h1>This piece has moved on.</h1><a routerLink="/" class="text-link">Return to collection →</a></section></ng-template>
-  `
-})
-export class ProductDetailsComponent implements OnInit {
-  product?: Product;
-  constructor(private readonly route: ActivatedRoute, private readonly productService: ProductService) {}
-  ngOnInit(): void { const id = Number(this.route.snapshot.paramMap.get('id')); this.productService.getProduct(id).subscribe(product => this.product = product); }
-}
+@Component({ selector:'app-product-details', imports:[RouterLink], template:`
+@if (category) {<section class="detail-hero section"><a routerLink="/products" class="back-link">← Back to products</a><div class="detail-grid"><div><div class="detail-icon" role="img" [attr.aria-label]="category.name + ' icon'">{{ category.image }}</div></div><article><p class="eyebrow">Product category</p><h1>{{ category.name }}</h1><p class="lead">{{ category.description }}</p><p class="price-note">Contact us for latest price and availability.</p><a class="button" [href]="'https://wa.me/910000000000?text=I%20want%20latest%20price%20and%20availability%20for%20' + category.name">Enquire on WhatsApp</a></article></div></section><section class="section info-columns"><article><h2>Sample products</h2><ul>@for (item of category.sampleProducts; track item) {<li>{{ item }}</li>}</ul></article><article><h2>Brands</h2><ul>@for (brand of category.brands; track brand) {<li>{{ brand }}</li>}</ul></article><article><h2>Specifications / common sizes</h2><ul>@for (spec of category.specifications; track spec) {<li>{{ spec }}</li>}</ul></article></section>} @else {<section class="page-hero"><h1>Category not found</h1><p>Please return to the product list and choose another category.</p><a routerLink="/products" class="button">View Products</a></section>}` })
+export class ProductDetailsComponent { private route=inject(ActivatedRoute); category=PRODUCT_CATEGORIES.find(c => c.slug === this.route.snapshot.paramMap.get('slug')); }
