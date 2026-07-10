@@ -44,6 +44,6 @@ Use these Cloudflare Pages build settings:
 
 Because this is a static Angular site, Cloudflare Pages can host the generated browser files directly.
 
-## Cloudflare configuration file
+## Cloudflare configuration note
 
-This repository also includes `wrangler.toml` with the Pages project `name` and `pages_build_output_dir = "dist/cloudflare/browser"` so Cloudflare Pages can validate the same static output directory used by the dashboard settings.
+No `wrangler.toml` file is required for this static Pages site, and this repository intentionally does not include one to avoid Wrangler validation blocking deployment. Cloudflare Pages should use the dashboard build settings above, while `npm run build` writes the Angular browser assets to `dist/cloudflare/browser`.
